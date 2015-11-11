@@ -2,61 +2,50 @@
 ;; --------------------------------------------------------------------------
 ;; Desktop File for Emacs
 ;; --------------------------------------------------------------------------
-;; Created Wed Nov 11 02:32:17 2015
+;; Created Wed Nov 11 09:10:44 2015
 ;; Desktop file format version 206
 ;; Emacs version 24.4.1
 
 ;; Global section:
-(setq desktop-saved-frameset [frameset 1 (22082 32385 683881 976000) (desktop . "206") "mad@mad" nil nil ((((font-backend xft x) (font . "-unknown-Ubuntu Mono-normal-normal-normal-*-16-*-*-*-m-0-iso10646-1") (font-parameter) (border-width . 0) (internal-border-width . 0) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars) (foreground-color . "White") (background-color . "Black") (mouse-color . "black") (border-color . "black") (screen-gamma) (line-spacing) (left-fringe . 8) (right-fringe . 8) (scroll-bar-foreground) (scroll-bar-background) (menu-bar-lines . 0) (tool-bar-lines . 0) (title) (wait-for-wm . t) (fullscreen . fullheight) (tool-bar-position . top) (icon-type . t) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 0) (alpha) (horizontal-scroll-bars . t) (display-type . color) (background-mode . dark) (cursor-color . "white") (sticky) (environment) (frameset--id . "CB27-8D26-BEA8-DC9B") (frameset--mini t . t) (height . 64) (width . 118) (modeline . t) (minibuffer . t) (unsplittable) (left . 950) (top . 14) (icon-name) (visibility . t) (display . ":0") (explicit-name)) ((min-height . 8) (min-width . 10) (min-height-ignore . 4) (min-width-ignore . 4) (min-height-safe . 2) (min-width-safe . 2) (min-pixel-height . 144) (min-pixel-width . 80) (min-pixel-height-ignore . 72) (min-pixel-width-ignore . 32) (min-pixel-height-safe . 36) (min-pixel-width-safe . 16)) vc (pixel-width . 960) (pixel-height . 1010) (total-width . 106) (total-height . 56) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 960) (pixel-height . 506) (total-width . 106) (total-height . 28) (normal-height . 0.5) (normal-width . 1.0) (buffer "init.el" (selected . t) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars 0 0 t nil) (vscroll . 0) (dedicated) (point . 51) (start . 1))) (leaf (last . t) (pixel-width . 960) (pixel-height . 504) (total-width . 106) (total-height . 28) (normal-height . 0.5) (normal-width . 1.0) (buffer "default-black-theme.el" (selected) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars 0 0 t nil) (vscroll . 0) (dedicated) (point . 805) (start . 1)))))])
+(setq desktop-saved-frameset [frameset 1 (22082 56292 743480 439000) (desktop . "206") "mad@mad" nil nil ((((font-backend xft x) (font . "-unknown-Ubuntu Mono-normal-normal-normal-*-16-*-*-*-m-0-iso10646-1") (font-parameter) (border-width . 0) (internal-border-width . 0) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars) (foreground-color . "white") (background-color . "black") (mouse-color . "black") (border-color . "black") (screen-gamma) (line-spacing) (left-fringe . 8) (right-fringe . 8) (scroll-bar-foreground) (scroll-bar-background) (menu-bar-lines . 0) (tool-bar-lines . 0) (title) (wait-for-wm . t) (fullscreen . maximized) (tool-bar-position . top) (icon-type . t) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 0) (alpha) (horizontal-scroll-bars . t) (display-type . color) (background-mode . dark) (cursor-color . "white") (sticky) (environment) (frameset--id . "F8D1-BC82-25E6-54D6") (frameset--mini t . t) (modeline . t) (minibuffer . t) (unsplittable) (icon-name) (visibility . t) (display . ":0") (explicit-name) (height . 58) (width . 238) (left . 1680) (top . 24)) ((min-height . 4) (min-width . 20) (min-height-ignore . 2) (min-width-ignore . 8) (min-height-safe . 1) (min-width-safe . 4) (min-pixel-height . 72) (min-pixel-width . 160) (min-pixel-height-ignore . 36) (min-pixel-width-ignore . 64) (min-pixel-height-safe . 18) (min-pixel-width-safe . 32)) hc (pixel-width . 1920) (pixel-height . 1038) (total-width . 240) (total-height . 57) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 960) (pixel-height . 1038) (total-width . 120) (total-height . 57) (normal-height . 1.0) (normal-width . 0.5) (buffer "init.el" (selected) (hscroll . 0) (fringes 8 8 nil) (margins 2) (scroll-bars 0 0 nil nil) (vscroll . 0) (dedicated) (point . 739) (start . 1))) (leaf (last . t) (pixel-width . 960) (pixel-height . 1038) (total-width . 120) (total-height . 57) (normal-height . 1.0) (normal-width . 0.5) (buffer ".gitignore" (selected . t) (hscroll . 0) (fringes 8 8 nil) (margins 1) (scroll-bars 0 0 t nil) (vscroll . 0) (dedicated) (point . 10) (start . 1)))))])
 (setq desktop-missing-file-warning nil)
 (setq tags-file-name nil)
 (setq tags-table-list nil)
 (setq search-ring nil)
 (setq regexp-search-ring nil)
 (setq register-alist nil)
-(setq file-name-history '("~/.emacs.d/custom.el" "~/.emacs.d/themes/default-black-theme.el" "~/.emacs.d/settings/appearance.el" "~/.emacs.d/themes" "~/.emacs.d/settings" "~/.emacs.d/desktop" "~/.emacs.d/init.el"))
+(setq file-name-history '("~/.emacs.d/.gitignore" "~/.emacs.d/settings/appearance.el" "~/.emacs.d/desktop" "~/.emacs.d/init.el"))
 
 ;; Buffer section -- buffers listed in same order as in buffer list:
 (desktop-create-buffer 206
-  "/home/mad/.emacs.d/init.el"
-  "init.el"
-  'emacs-lisp-mode
-  nil
-  51
-  '(956 nil)
-  nil
-  nil
-  '((buffer-file-coding-system . prefer-utf-8-unix)))
-
-(desktop-create-buffer 206
-  "/home/mad/.emacs.d/custom.el"
-  "custom.el"
-  'emacs-lisp-mode
-  nil
-  601
-  '(1 nil)
+  "/home/mad/.emacs.d/.gitignore"
+  ".gitignore"
+  'fundamental-mode
+  '(linum-mode)
+  10
+  '(3 nil)
   nil
   nil
-  '((buffer-file-coding-system . prefer-utf-8-unix)))
-
-(desktop-create-buffer 206
-  "/home/mad/.emacs.d/themes/default-black-theme.el"
-  "default-black-theme.el"
-  'emacs-lisp-mode
-  nil
-  805
-  '(1 nil)
-  nil
-  nil
-  '((buffer-file-coding-system . prefer-utf-8-unix)))
+  '((buffer-file-coding-system . utf-8-unix)))
 
 (desktop-create-buffer 206
   "/home/mad/.emacs.d/settings/appearance.el"
   "appearance.el"
   'emacs-lisp-mode
+  '(linum-mode)
+  318
+  '(246 nil)
   nil
-  259
-  '(233 nil)
+  nil
+  '((buffer-file-coding-system . prefer-utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/home/mad/.emacs.d/init.el"
+  "init.el"
+  'emacs-lisp-mode
+  '(linum-mode)
+  739
+  '(729 nil)
   nil
   nil
   '((buffer-file-coding-system . prefer-utf-8-unix)))

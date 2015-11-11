@@ -12,6 +12,7 @@
       (expand-file-name "themes" user-emacs-directory))
 (setq custom-file
       (expand-file-name "custom.el" user-emacs-directory))
+(setq desktop-path '("~/.emacs.d/desktop/"))
 (load custom-file)
 (add-to-list 'load-path settings-dir)
 
