@@ -13,6 +13,7 @@
 (setq custom-file
       (expand-file-name "custom.el" user-emacs-directory))
 (setq desktop-path '("~/.emacs.d/desktop/"))
+(setq emacs-persistence-directory (concat user-emacs-directory "persistence/"))
 (load custom-file)
 (add-to-list 'load-path settings-dir)
 
@@ -32,6 +33,15 @@
 ;; load saved desktop
 (require 'desktop)
 (desktop-save-mode 1)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Utils
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Packages
+(require 'init-package)
+;; IDO
+(require 'init-ido)
 
 ;; THE END
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
