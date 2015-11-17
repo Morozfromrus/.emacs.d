@@ -1,5 +1,7 @@
 ;; Interactively Do Things
 
+(setq emacs-persistence-directory (concat user-emacs-directory "persistence/"))
+
 (use-package ido
   :config
   (progn

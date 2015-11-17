@@ -2,6 +2,12 @@
 ;; Configuration for emacs
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Common
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Paths
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -13,7 +19,6 @@
 (setq custom-file
       (expand-file-name "custom.el" user-emacs-directory))
 (setq desktop-path '("~/.emacs.d/desktop/"))
-(setq emacs-persistence-directory (concat user-emacs-directory "persistence/"))
 (load custom-file)
 (add-to-list 'load-path settings-dir)
 
@@ -53,6 +58,8 @@
 (require 'init-web-mode)
 ;; PHP
 (require 'init-php-mode)
+;; Python
+(require 'init-python-mode)
 
 ;; THE END
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

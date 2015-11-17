@@ -10,7 +10,7 @@
 (show-paren-mode 1)
 
 ;; Theme
-(load-theme 'tty-dark)
+(load-theme 'default-black)
 
 ;; Line numbers
 (global-linum-mode 1)
