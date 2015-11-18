@@ -49,5 +49,19 @@ Version 2015-04-09"
   (eshell-send-input)
   (goto-char (point-max)))
 
+;; move line up
+(defun move-line-up ()
+  (interactive)
+  (transpose-lines 1)
+  (previous-line 2))
+(global-set-key (kbd "C-S-up") 'move-line-up)
+
+;; move line down
+(defun move-line-down ()
+  (interactive)
+  (next-line 1)
+  (transpose-lines 1)
+  (previous-line 1))
+(global-set-key (kbd "C-S-down") 'move-line-down)
 
 (provide 'init-common)
