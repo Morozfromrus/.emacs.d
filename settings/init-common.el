@@ -25,10 +25,13 @@ Version 2015-04-09"
 
 (progn
   ;; set arrow keys in isearch. left/right is backward/forward, up/down is history. press Return to exit
-  (define-key isearch-mode-map (kbd "<up>") 'isearch-ring-retreat )
-  (define-key isearch-mode-map (kbd "<down>") 'isearch-ring-advance )
+;;  (define-key isearch-mode-map (kbd "<up>") 'isearch-ring-retreat)
+;;  (define-key isearch-mode-map (kbd "<down>") 'isearch-ring-advance)
+  (define-key isearch-mode-map (kbd "<up>") 'isearch-repeat-backward)
+  (define-key isearch-mode-map (kbd "<down>") 'isearch-repeat-forward)
   (define-key isearch-mode-map (kbd "<left>") 'isearch-repeat-backward) ; single key, useful
-  (define-key isearch-mode-map (kbd "<right>") 'isearch-repeat-forward)) ; single key, useful
+  (define-key isearch-mode-map (kbd "<right>") 'isearch-repeat-forward) ; single key, useful
+  (define-key isearch-mode-map (kbd "<tab>") 'isearch-exit))
 
 ;; y and p
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -54,7 +57,7 @@ Version 2015-04-09"
   (interactive)
   (transpose-lines 1)
   (previous-line 2))
-(global-set-key (kbd "C-S-up") 'move-line-up)
+(global-set-key (kbd "C-S-<up>") 'move-line-up)
 
 ;; move line down
 (defun move-line-down ()
@@ -62,6 +65,6 @@ Version 2015-04-09"
   (next-line 1)
   (transpose-lines 1)
   (previous-line 1))
-(global-set-key (kbd "C-S-down") 'move-line-down)
+(global-set-key (kbd "C-S-<down>") 'move-line-down)
 
 (provide 'init-common)
