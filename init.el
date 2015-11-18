@@ -2,25 +2,33 @@
 ;; Configuration for emacs
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Common
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(fset 'yes-or-no-p 'y-or-n-p)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Paths
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Settings
 (setq settings-dir
       (expand-file-name "settings" user-emacs-directory))
+(add-to-list 'load-path settings-dir)
+
+;; Themes
 (setq custom-theme-directory
       (expand-file-name "themes" user-emacs-directory))
+
+;; Custom
 (setq custom-file
       (expand-file-name "custom.el" user-emacs-directory))
-(setq desktop-path '("~/.emacs.d/desktop/"))
 (load custom-file)
-(add-to-list 'load-path settings-dir)
+
+;; Desktop
+(setq desktop-dir (concat user-emacs-directory "desktop/"))
+(if (not (file-directory-p desktop-dir)) (make-directory desktop-dir))
+(setq desktop-path (list desktop-dir))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Common
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'init-common)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Desin changes
@@ -32,10 +40,10 @@
 ;; Startup settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; start with *scratch* buffer
+;; Start with *scratch* buffer
 (setq inhibit-startup-screen t)
 
-;; load saved desktop
+;; Load saved desktop
 (require 'desktop)
 (desktop-save-mode 1)
 
@@ -45,10 +53,21 @@
 
 ;; Packages
 (require 'init-package)
+
 ;; IDO
 (require 'init-ido)
+
+;; Helm
+;; (require 'init-helm)
+
+;; Undo tree
+(require 'init-undo-tree)
+
 ;; Auto-Complete
 (require 'init-auto-complete)
+
+;; Magit
+(require 'init-magit)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Languages
@@ -56,10 +75,24 @@
 
 ;; Web
 (require 'init-web-mode)
+
 ;; PHP
 (require 'init-php-mode)
+
 ;; Python
 (require 'init-python-mode)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Key bindings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'init-keys)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Local
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'init-local nil t)
 
 ;; THE END
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

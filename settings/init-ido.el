@@ -1,6 +1,7 @@
 ;; Interactively Do Things
 
-(setq emacs-persistence-directory (concat user-emacs-directory "persistence/"))
+(setq persistence-dir (concat user-emacs-directory "persistence/"))
+(if (not (file-directory-p persistence-dir)) (make-directory persistence-dir))
 
 (use-package ido
   :config
@@ -17,21 +18,21 @@
 	  ido-case-fold nil
 	  ido-create-new-buffer 'always
 	  ido-max-prospects 10
-          smex-save-file (concat emacs-persistence-directory ".smex-items")
+          smex-save-file (concat persistence-dir ".smex-items")
           ido-default-buffer-method 'selected-window
-          ido-save-directory-list-file (concat emacs-persistence-directory ".ido-last"))
+          ido-save-directory-list-file (concat persistence-dir ".ido-last"))
     (global-set-key [remap execute-extended-command] 'smex)
-    (defadvice ido-find-file (after find-file-sudo activate)
-      "Find file as root if necessary."
-      (unless (and buffer-file-name
-                   (file-writable-p buffer-file-name))
-        (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
-;;    (defun bind-ido-keys ()
-;;      "Keybindings for ido mode."
-;;      (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
-;;      (define-key ido-completion-map (kbd "C-p") 'ido-prev-match))
-;;    (add-hook 'ido-setup-hook (lambda () (define-key ido-completion-map [up] 'previous-history-element)))
-;;    (add-hook 'ido-setup-hook #'bind-ido-keys))
+   ;;  (defadvice ido-find-file (after find-file-sudo activate)
+   ;;    "Find file as root if necessary."
+   ;;    (unless (and buffer-file-name
+   ;;                 (file-writable-p buffer-file-name))
+   ;;      (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
+   ;; (defun bind-ido-keys ()
+   ;;   "Keybindings for ido mode."
+   ;;   (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
+   ;;   (define-key ido-completion-map (kbd "C-p") 'ido-prev-match))
+   ;; (add-hook 'ido-setup-hook (lambda () (define-key ido-completion-map [up] 'previous-history-element)))
+   ;; (add-hook 'ido-setup-hook #'bind-ido-keys))
 )
   :ensure imenu-anywhere
   :ensure ido-vertical-mode
@@ -40,13 +41,14 @@
   :ensure ido-ubiquitous
   :ensure smex)
 
+(global-set-key (kbd "C-.") 'imenu-anywhere)
+
 ;; C-n/p is more intuitive in vertical layout
 (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
 
 (defun my/ido-go-straight-home ()
   (interactive)
   (cond
-   ((looking-back "~/") (insert "projects/"))
    ((looking-back "/") (insert "~/"))
    (:else (call-interactively 'self-insert-command))))
 
