@@ -7,10 +7,10 @@
 
 (defun mcs-run-crawler()
   (interactive)
-  (spawn-shell "*mcs-consumer*"
+  (spawn-shell "*mcs-starter*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/server/;"
-			    "celery worker -A tasks -E -l INFO -n consume -Q consume -B"))
+			    "python cs-starter.py"))
   (spawn-shell "*mcs-launcher*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/crawler/;"

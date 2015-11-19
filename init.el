@@ -69,6 +69,15 @@
 ;; Magit
 (require 'init-magit)
 
+;; drag-stuff
+(require 'init-drag-stuff)
+
+;; Multiple cursors
+(require 'init-multiple-cursors)
+
+;; Expand region
+(require 'init-expand-region)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Languages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -96,3 +105,4 @@
 
 ;; THE END
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(put 'upcase-region 'disabled nil)

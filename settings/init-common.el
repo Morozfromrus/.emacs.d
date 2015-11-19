@@ -25,8 +25,8 @@ Version 2015-04-09"
 
 (progn
   ;; set arrow keys in isearch. left/right is backward/forward, up/down is history. press Return to exit
-;;  (define-key isearch-mode-map (kbd "<up>") 'isearch-ring-retreat)
-;;  (define-key isearch-mode-map (kbd "<down>") 'isearch-ring-advance)
+  ;; (define-key isearch-mode-map (kbd "<up>") 'isearch-ring-retreat)
+  ;; (define-key isearch-mode-map (kbd "<down>") 'isearch-ring-advance)
   (define-key isearch-mode-map (kbd "<up>") 'isearch-repeat-backward)
   (define-key isearch-mode-map (kbd "<down>") 'isearch-repeat-forward)
   (define-key isearch-mode-map (kbd "<left>") 'isearch-repeat-backward) ; single key, useful
@@ -80,5 +80,16 @@ buffer is not visiting a file."
                          (ido-read-file-name "Find file(as root): ")))
     (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
 (global-set-key (kbd "C-x C-r") 'sudo-edit)
+
+;; auto pair
+(electric-pair-mode t)
+
+;; close all buffers
+(defun close-all-buffers ()
+  (interactive)
+  (mapc 'kill-buffer (buffer-list)))
+
+;; edit selection
+(delete-selection-mode t)
 
 (provide 'init-common)
