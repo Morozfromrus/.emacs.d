@@ -53,18 +53,32 @@ Version 2015-04-09"
   (goto-char (point-max)))
 
 ;; move line up
-(defun move-line-up ()
-  (interactive)
-  (transpose-lines 1)
-  (previous-line 2))
-(global-set-key (kbd "C-S-<up>") 'move-line-up)
+;; (defun move-line-up ()
+;;   (interactive)
+;;   (transpose-lines 1)
+;;   (previous-line 2))
+;; (global-set-key (kbd "C-S-<up>") 'move-line-up)
 
 ;; move line down
-(defun move-line-down ()
-  (interactive)
-  (next-line 1)
-  (transpose-lines 1)
-  (previous-line 1))
-(global-set-key (kbd "C-S-<down>") 'move-line-down)
+;; (defun move-line-down ()
+;;   (interactive)
+;;   (next-line 1)
+;;   (transpose-lines 1)
+;;   (previous-line 1))
+;; (global-set-key (kbd "C-S-<down>") 'move-line-down)
+
+;; sudo edit
+(defun sudo-edit (&optional arg)
+  "Edit currently visited file as root.
+
+With a prefix ARG prompt for a file to visit.
+Will also prompt for a file to visit if current
+buffer is not visiting a file."
+  (interactive "P")
+  (if (or arg (not buffer-file-name))
+      (find-file (concat "/sudo:root@localhost:"
+                         (ido-read-file-name "Find file(as root): ")))
+    (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
+(global-set-key (kbd "C-x C-r") 'sudo-edit)
 
 (provide 'init-common)
