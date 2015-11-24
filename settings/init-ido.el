@@ -10,6 +10,7 @@
     (ido-vertical-mode)
     (ido-everywhere)
     (ido-ubiquitous-mode)
+    (flx-ido-mode)
     (setq ido-enable-flex-matching t
           ido-use-filename-at-point nil
           ido-auto-merge-work-directories-length 0
@@ -20,7 +21,9 @@
 	  ido-max-prospects 10
           smex-save-file (concat persistence-dir ".smex-items")
           ido-default-buffer-method 'selected-window
-          ido-save-directory-list-file (concat persistence-dir ".ido-last"))
+          ido-save-directory-list-file (concat persistence-dir ".ido-last")
+	  ido-enable-flex-matching t
+	  ido-use-faces nil)
     (global-set-key [remap execute-extended-command] 'smex)
    ;;  (defadvice ido-find-file (after find-file-sudo activate)
    ;;    "Find file as root if necessary."
@@ -39,6 +42,7 @@
   :ensure idomenu
   :ensure ido-completing-read+
   :ensure ido-ubiquitous
+  :ensure flx-ido
   :ensure smex)
 
 (global-set-key (kbd "C-.") 'imenu-anywhere)
