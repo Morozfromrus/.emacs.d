@@ -78,6 +78,12 @@
 ;; Expand region
 (require 'init-expand-region)
 
+;; Projectle
+(require 'init-projectile)
+
+;; Elscreen
+(require 'init-elscreen)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Languages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -106,3 +112,4 @@
 ;; THE END
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)

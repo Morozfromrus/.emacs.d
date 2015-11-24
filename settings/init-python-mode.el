@@ -1,5 +1,8 @@
+(use-package python-django
+  :ensure t)
+
 (use-package python
-    :no-require t
+    :ensure t
     :init
   (progn
     (setq
@@ -16,14 +19,15 @@ from IPython.core.completerlib import module_completion"
      "';'.join(module_completion('''%s'''))\n"
      python-shell-completion-string-code
      "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
-
-    (add-hook 'python-mode-hook
-              #'(lambda ()
-                  (define-key python-mode-map (kbd "C-m") 'newline-and-indent)))
-
     (when (fboundp 'jedi:setup)
-      (add-hook 'python-mode-hook 'jedi:setup))
+      (add-hook 'python-mode-hook 'jedi:setup))))
 
-    (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)))
+(defun python-add-breakpoint ()
+  "Add a break point"
+  (interactive)
+  (insert "import ipdb; ipdb.set_trace()")
+  (highlight-lines-matching-regexp "^[ ]*import ipdb; ipdb.set_trace()"))
+
+(define-key python-mode-map (kbd "C-c C-b") 'python-add-breakpoint)
 
 (provide 'init-python-mode)

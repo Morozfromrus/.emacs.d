@@ -52,21 +52,6 @@ Version 2015-04-09"
   (eshell-send-input)
   (goto-char (point-max)))
 
-;; move line up
-;; (defun move-line-up ()
-;;   (interactive)
-;;   (transpose-lines 1)
-;;   (previous-line 2))
-;; (global-set-key (kbd "C-S-<up>") 'move-line-up)
-
-;; move line down
-;; (defun move-line-down ()
-;;   (interactive)
-;;   (next-line 1)
-;;   (transpose-lines 1)
-;;   (previous-line 1))
-;; (global-set-key (kbd "C-S-<down>") 'move-line-down)
-
 ;; sudo edit
 (defun sudo-edit (&optional arg)
   "Edit currently visited file as root.
@@ -91,5 +76,11 @@ buffer is not visiting a file."
 
 ;; edit selection
 (delete-selection-mode t)
+
+;; windmove
+(global-set-key (kbd "M-<up>") 'windmove-up)
+(global-set-key (kbd "M-<down>") 'windmove-down)
+(global-set-key (kbd "M-<left>") 'windmove-left)
+(global-set-key (kbd "M-<right>") 'windmove-right)
 
 (provide 'init-common)

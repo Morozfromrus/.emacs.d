@@ -11,10 +11,14 @@
 	       (concatenate 'string
 			    "cd ~/work/new_cs/server/;"
 			    "python cs-starter.py"))
-  (spawn-shell "*mcs-launcher*"
+  (spawn-shell "*mcs-saver*"
+	       (concatenate 'string
+			    "cd ~/work/new_cs/server/;"
+			    "celery worker -A server_tasks -E -l INFO -n saver -Q saver"))
+  (spawn-shell "*mcs-controller*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/crawler/;"
-			    "celery worker -A crawler.tasks -E -l INFO -n launch -Q launch"))
+			    "celery worker -A crawler.tasks -E -l INFO -n controller -Q controller"))
   (spawn-shell "*mcs-downloader*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/crawler/;"
