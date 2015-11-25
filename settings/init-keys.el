@@ -32,4 +32,7 @@
 (global-set-key (kbd "M-e") 'forward-paragraph)
 (global-set-key (kbd "M-a") 'backward-paragraph)
 
+;; escape
+(global-set-key (kbd "C-c q") 'quoted-insert)
+
 (provide 'init-keys)
