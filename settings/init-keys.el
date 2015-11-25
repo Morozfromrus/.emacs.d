@@ -28,6 +28,8 @@
 ;; help f1
 (global-set-key (kbd "<f1>") 'help-command)
 
-
+;; walk
+(global-set-key (kbd "M-e") 'forward-paragraph)
+(global-set-key (kbd "M-a") 'backward-paragraph)
 
 (provide 'init-keys)

@@ -12,6 +12,7 @@
 ;; Theme
 ;; (load-theme 'default-black)
 (use-package color-theme
+  :ensure t
   :config
   (setq color-theme-is-global t)
   (color-theme-initialize)
