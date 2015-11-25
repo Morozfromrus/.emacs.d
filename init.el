@@ -25,6 +25,13 @@
 (setq desktop-path (list desktop-dir))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Package
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Packages
+(require 'init-package)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Common
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -62,6 +69,9 @@
 
 ;; Undo tree
 (require 'init-undo-tree)
+
+;; Hippie-expand
+(require 'init-hippie-expand)
 
 ;; Auto-Complete
 (require 'init-auto-complete)

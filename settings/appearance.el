@@ -10,7 +10,12 @@
 (show-paren-mode 1)
 
 ;; Theme
-(load-theme 'default-black)
+;; (load-theme 'default-black)
+(use-package color-theme
+  :config
+  (setq color-theme-is-global t)
+  (color-theme-initialize)
+  (color-theme-pok-wob))
 
 ;; Line numbers
 (global-linum-mode 1)

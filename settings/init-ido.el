@@ -45,7 +45,7 @@
   :ensure flx-ido
   :ensure smex)
 
-(global-set-key (kbd "C-.") 'imenu-anywhere)
+;; (global-set-key (kbd "M-e") 'imenu-anywhere)
 
 ;; C-n/p is more intuitive in vertical layout
 (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
