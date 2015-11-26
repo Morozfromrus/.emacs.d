@@ -19,20 +19,11 @@
 ;; CTRL+_
 ;;
 
-;; delete keys
-(global-set-key (kbd "C-d") 'delete-backward-char)
-(global-set-key (kbd "M-d") 'backward-kill-word)
-(global-set-key (kbd "C-h") 'delete-char)
-(global-set-key (kbd "M-h") 'kill-word)
-
 ;; help f1
 (global-set-key (kbd "<f1>") 'help-command)
 
 ;; walk
-(global-set-key (kbd "M-e") 'forward-paragraph)
-(global-set-key (kbd "M-a") 'backward-paragraph)
-
-;; escape
-(global-set-key (kbd "C-c q") 'quoted-insert)
+(global-set-key (kbd "M-n") 'forward-paragraph)
+(global-set-key (kbd "M-p") 'backward-paragraph)
 
 (provide 'init-keys)

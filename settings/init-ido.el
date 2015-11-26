@@ -25,6 +25,7 @@
 	  ido-enable-flex-matching t
 	  ido-use-faces nil)
     (global-set-key [remap execute-extended-command] 'smex)
+
    ;;  (defadvice ido-find-file (after find-file-sudo activate)
    ;;    "Find file as root if necessary."
    ;;    (unless (and buffer-file-name
@@ -35,7 +36,8 @@
    ;;   (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
    ;;   (define-key ido-completion-map (kbd "C-p") 'ido-prev-match))
    ;; (add-hook 'ido-setup-hook (lambda () (define-key ido-completion-map [up] 'previous-history-element)))
-   ;; (add-hook 'ido-setup-hook #'bind-ido-keys))
+    ;; (add-hook 'ido-setup-hook #'bind-ido-keys))
+
 )
   :ensure imenu-anywhere
   :ensure ido-vertical-mode
@@ -45,7 +47,7 @@
   :ensure flx-ido
   :ensure smex)
 
-;; (global-set-key (kbd "M-e") 'imenu-anywhere)
+(global-set-key (kbd "M-e") 'imenu-anywhere)
 
 ;; C-n/p is more intuitive in vertical layout
 (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
