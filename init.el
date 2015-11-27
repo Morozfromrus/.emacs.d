@@ -64,6 +64,9 @@
 ;; IDO
 (require 'init-ido)
 
+;; Shell
+(require 'init-shell)
+
 ;; Helm
 ;; (require 'init-helm)
 
