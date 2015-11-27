@@ -67,6 +67,9 @@
 ;; Shell
 (require 'init-shell)
 
+;; Ace-jump
+(require 'init-ace-jump)
+
 ;; Helm
 ;; (require 'init-helm)
 
