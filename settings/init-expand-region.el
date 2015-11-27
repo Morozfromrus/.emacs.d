@@ -1,5 +1,5 @@
 (use-package expand-region
   :ensure t
-  :bind (("M-e" . er/expand-region)))
+  :bind (("M-r" . er/expand-region)))
 
 (provide 'init-expand-region)

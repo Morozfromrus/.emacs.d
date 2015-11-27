@@ -26,4 +26,8 @@
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
 
+;; delete
+(global-set-key (kbd "C-h") 'delete-char)
+(global-set-key (kbd "M-h") 'backward-kill-word)
+
 (provide 'init-keys)
