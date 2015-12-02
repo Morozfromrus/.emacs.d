@@ -48,45 +48,55 @@
   (spawn-shell "*mcs-crawler-flower*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/crawler/;"
-			    "celery flower -A crawler.crawler_tasks -E -l INFO --persistent True"
+			    "celery flower -A crawler.crawler_tasks -E -l INFO --persistent True --port=5001"
 			    " --broker_api='http://admin:9206@localhost:15672/api/'"))
   (spawn-shell "*mcs-server-flower*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/server/;"
-			    "celery flower -A server_tasks -E -l INFO --persistent True --port=5556"
+			    "celery flower -A server_tasks -E -l INFO --persistent True --port=5002"
 			    " --broker_api='http://admin:9206@localhost:15672/api/'")))
 
 (defun mcs-run()
   (interactive)
+  (elscreen-create)
   (mcs-run-server)
   (mcs-run-crawler)
   (mcs-run-flower)
   (delete-other-windows)
   (split-window-vertically)
   (switch-to-buffer "*mcs-server*")
+  (balance-windows)
   (split-window-horizontally)
   (windmove-right)
   (switch-to-buffer "*mcs-starter*")
+  (balance-windows)
   (split-window-horizontally)
   (windmove-right)
   (switch-to-buffer "*mcs-saver*")
+  (balance-windows)
   (split-window-horizontally)
   (windmove-right)
   (switch-to-buffer "*mcs-controller*")
+  (balance-windows)
   (split-window-horizontally)
   (windmove-right)
   (switch-to-buffer "*mcs-downloader*")
+  (balance-windows)
   (split-window-horizontally)
   (windmove-right)
   (switch-to-buffer "*mcs-parser*")
+  (balance-windows)
   (split-window-horizontally)
   (windmove-right)
   (switch-to-buffer "*mcs-processor*")
+  (balance-windows)
   (split-window-horizontally)
   (windmove-right)
   (switch-to-buffer "*mcs-finisher*")
+  (balance-windows)
   (windmove-down)
   (switch-to-buffer "*mcs-crawler-flower*")
+  (balance-windows)
   (split-window-horizontally)
   (windmove-right)
   (switch-to-buffer "*mcs-server-flower*")
@@ -94,6 +104,8 @@
 
 (defun mcs-stop()
   (interactive)
-  (kill-matching-buffers-not-ask "*mcs-"))
+  (elscreen-find-and-goto-by-buffer "*mcs-server*")
+  (kill-matching-buffers-not-ask "*mcs-")
+  (elscreen-kill))
 
 (provide 'init-local)
