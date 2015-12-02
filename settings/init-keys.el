@@ -23,11 +23,11 @@
 (global-set-key (kbd "<f1>") 'help-command)
 
 ;; walk
-(global-set-key (kbd "M-n") 'forward-paragraph)
-(global-set-key (kbd "M-p") 'backward-paragraph)
+(define-key key-translation-map (kbd "M-n") (kbd "<C-down>"))
+(define-key key-translation-map (kbd "M-p") (kbd "<C-up>"))
 
 ;; delete
-(global-set-key (kbd "C-h") 'delete-char)
-(global-set-key (kbd "M-h") 'backward-kill-word)
+(define-key key-translation-map (kbd "C-h") (kbd "DEL"))
+(define-key key-translation-map (kbd "M-h") (kbd "<C-backspace>"))
 
 (provide 'init-keys)

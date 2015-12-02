@@ -96,4 +96,19 @@ buffer is not visiting a file."
           (message "Deleted file %s" filename)
           (kill-buffer))))))
 
+;; always create new file
+(setq confirm-nonexistent-file-or-buffer nil)
+
+;; kill buffers without ask process
+(setq kill-buffer-query-functions
+  (remq 'process-kill-buffer-query-function
+	kill-buffer-query-functions))
+
+(require 'cl)
+(defun kill-matching-buffers-not-ask (regexp)
+  "Kill buffers matching REGEXP without asking for confirmation."
+  (interactive "sKill buffers matching this regular expression: ")
+  (flet ((kill-buffer-ask (buffer) (kill-buffer buffer)))
+    (kill-matching-buffers regexp)))
+
 (provide 'init-common)
