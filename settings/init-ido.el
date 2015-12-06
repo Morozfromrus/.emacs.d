@@ -1,8 +1,5 @@
 ;; Interactively Do Things
 
-(setq persistence-dir (concat user-emacs-directory "persistence/"))
-(if (not (file-directory-p persistence-dir)) (make-directory persistence-dir))
-
 (use-package ido
   :config
   (progn
@@ -19,26 +16,10 @@
 	  ido-case-fold nil
 	  ido-create-new-buffer 'always
 	  ido-max-prospects 10
-          smex-save-file (concat persistence-dir ".smex-items")
           ido-default-buffer-method 'selected-window
-          ido-save-directory-list-file (concat persistence-dir ".ido-last")
 	  ido-enable-flex-matching t
 	  ido-use-faces nil)
-    (global-set-key [remap execute-extended-command] 'smex)
-
-   ;;  (defadvice ido-find-file (after find-file-sudo activate)
-   ;;    "Find file as root if necessary."
-   ;;    (unless (and buffer-file-name
-   ;;                 (file-writable-p buffer-file-name))
-   ;;      (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
-   ;; (defun bind-ido-keys ()
-   ;;   "Keybindings for ido mode."
-   ;;   (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
-   ;;   (define-key ido-completion-map (kbd "C-p") 'ido-prev-match))
-   ;; (add-hook 'ido-setup-hook (lambda () (define-key ido-completion-map [up] 'previous-history-element)))
-    ;; (add-hook 'ido-setup-hook #'bind-ido-keys))
-
-)
+    (global-set-key [remap execute-extended-command] 'smex))
   :ensure imenu-anywhere
   :ensure ido-vertical-mode
   :ensure idomenu
@@ -69,7 +50,7 @@
   (define-key ido-file-completion-map (kbd "C-w") 'ido-delete-backward-updir)
   (define-key ido-file-completion-map (kbd "C-x C-w") 'ido-copy-current-file-name)
 
-  (define-key ido-file-dir-completion-map (kbd "C-w") 'ido-delete-backward-updir)
+ (define-key ido-file-dir-completion-map (kbd "C-w") 'ido-delete-backward-updir)
   (define-key ido-file-dir-completion-map (kbd "C-x C-w") 'ido-copy-current-file-name))
 
 (add-hook 'ido-setup-hook 'my/setup-ido)
