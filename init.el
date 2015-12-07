@@ -5,24 +5,19 @@
 ;; Paths
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
 ;; Settings
-(setq settings-dir
-      (expand-file-name "settings" user-emacs-directory))
+(setq settings-dir (concat user-emacs-directory "settings/"))
+(if (not (file-directory-p settings-dir)) (make-directory settings-dir))
 (add-to-list 'load-path settings-dir)
 
-;; Themes
-(setq custom-theme-directory
-      (expand-file-name "themes" user-emacs-directory))
+(require 'init-paths)
 
-;; Custom
-(setq custom-file
-      (expand-file-name "custom.el" user-emacs-directory))
-(load custom-file)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Desin changes
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Desktop
-(setq desktop-dir (concat user-emacs-directory "desktop/"))
-(if (not (file-directory-p desktop-dir)) (make-directory desktop-dir))
-(setq desktop-path (list desktop-dir))
+(require 'appearance)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Package
@@ -37,12 +32,6 @@
 
 (require 'init-perfomance)
 (require 'init-common)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Desin changes
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(require 'appearance)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Startup settings
@@ -70,9 +59,6 @@
 
 ;; Ace-jump
 (require 'init-ace-jump)
-
-;; Helm
-;; (require 'init-helm)
 
 ;; Undo tree
 (require 'init-undo-tree)
@@ -131,5 +117,3 @@
 
 ;; THE END
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(put 'upcase-region 'disabled nil)
-(put 'downcase-region 'disabled nil)

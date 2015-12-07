@@ -3,3 +3,5 @@
 *.desktop
 elpa/
 persistence/
+/eshell/history
+/eshell/lastdir

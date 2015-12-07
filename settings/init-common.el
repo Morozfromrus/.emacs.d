@@ -1,3 +1,6 @@
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+
 ;; select word when isearch
 (defun xah-search-current-word ()
   "Call `isearch' on current word or text selection.
