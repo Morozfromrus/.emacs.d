@@ -13,6 +13,16 @@
 			    "cd ~/work/new_cs/server/;"
 			    "python cs-starter.py"))
 
+  (spawn-shell "*mcs-schedule*"
+	       (concatenate 'string
+			    "cd ~/work/new_cs/crawler/;"
+			    "celery worker -A crawler.crawler_tasks -E -l INFO -n schedule -Q schedule"))
+
+  (spawn-shell "*mcs-messenger*"
+	       (concatenate 'string
+			    "cd ~/work/new_cs/crawler/;"
+			    "celery worker -A crawler.crawler_tasks -E -l INFO -n messenger -Q messenger"))
+  
   (spawn-shell "*mcs-saver*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/server/;"
@@ -72,6 +82,10 @@
   (balance-windows)
   (split-window-horizontally)
   (windmove-right)
+  (switch-to-buffer "*mcs-schedule*")
+  (balance-windows)
+  (split-window-horizontally)
+  (windmove-right)
   (switch-to-buffer "*mcs-saver*")
   (balance-windows)
   (split-window-horizontally)
@@ -82,6 +96,7 @@
   (windmove-right)
   (switch-to-buffer "*mcs-downloader*")
   (balance-windows)
+  (windmove-down)
   (split-window-horizontally)
   (windmove-right)
   (switch-to-buffer "*mcs-parser*")
@@ -92,9 +107,12 @@
   (balance-windows)
   (split-window-horizontally)
   (windmove-right)
+  (switch-to-buffer "*mcs-messenger*")
+  (balance-windows)
+  (split-window-horizontally)
+  (windmove-right)
   (switch-to-buffer "*mcs-finisher*")
   (balance-windows)
-  (windmove-down)
   (switch-to-buffer "*mcs-crawler-flower*")
   (balance-windows)
   (split-window-horizontally)
@@ -107,5 +125,16 @@
   (elscreen-find-and-goto-by-buffer "*mcs-server*")
   (kill-matching-buffers-not-ask "*mcs-")
   (elscreen-kill))
+
+;; (request
+;;  "http://ya.ru/"
+;;  :parser 'buffer-string
+;;  :success
+;;  (function* (lambda (&key data &allow-other-keys)
+;;               (when data
+;;                 (with-current-buffer (get-buffer-create "*request demo*")
+;;                   (erase-buffer)
+;;                   (insert data)
+;;                   (pop-to-buffer (current-buffer)))))))
 
 (provide 'init-local)
