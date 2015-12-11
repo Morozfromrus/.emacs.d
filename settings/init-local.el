@@ -16,42 +16,47 @@
   (spawn-shell "*mcs-schedule*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/crawler/;"
-			    "celery worker -A crawler.crawler_tasks -E -l INFO -n schedule -Q schedule"))
+			    "celery worker -A crawler.crawler_tasks -E -l INFO -n schedule -Q schedule --concurrency=1"))
 
   (spawn-shell "*mcs-messenger*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/crawler/;"
-			    "celery worker -A crawler.crawler_tasks -E -l INFO -n messenger -Q messenger"))
+			    "celery worker -A crawler.crawler_tasks -E -l INFO -n messenger -Q messenger --concurrency=1"))
+
+  (spawn-shell "*mcs-virtual_bro*"
+	       (concatenate 'string
+			    "cd ~/work/new_cs/crawler/;"
+			    "celery worker -A crawler.crawler_tasks -E -l INFO -n virtual_bro -Q virtual_bro --concurrency=8 -Ofair"))
   
   (spawn-shell "*mcs-saver*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/server/;"
-			    "celery worker -A server_tasks -E -l INFO -n save -Q save"))
+			    "celery worker -A server_tasks -E -l INFO -n save -Q save --concurrency=1"))
 
   (spawn-shell "*mcs-controller*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/crawler/;"
-			    "celery worker -A crawler.server_tasks -E -l INFO -n controller -Q controller"))
+			    "celery worker -A crawler.server_tasks -E -l INFO -n controller -Q controller --concurrency=12 -Ofair"))
 
   (spawn-shell "*mcs-downloader*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/crawler/;"
-			    "celery worker -A crawler.crawler_tasks -E -l INFO -n download -Q download"))
+			    "celery worker -A crawler.crawler_tasks -E -l INFO -n download -Q download --concurrency=32 -Ofair"))
 
   (spawn-shell "*mcs-parser*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/crawler/;"
-			    "celery worker -A crawler.crawler_tasks -E -l INFO -n parse -Q parse"))
+			    "celery worker -A crawler.crawler_tasks -E -l INFO -n parse -Q parse --concurrency=8 -Ofair"))
 
   (spawn-shell "*mcs-processor*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/crawler/;"
-			    "celery worker -A crawler.crawler_tasks -E -l INFO -n process -Q process"))
+			    "celery worker -A crawler.crawler_tasks -E -l INFO -n process -Q process --concurrency=1"))
 
   (spawn-shell "*mcs-finisher*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/crawler/;"
-			    "celery worker -A crawler.crawler_tasks -E -l INFO -n finish -Q finish")))
+			    "celery worker -A crawler.crawler_tasks -E -l INFO -n finish -Q finish --concurrency=1")))
 
 (defun mcs-run-flower()
   (interactive)
@@ -74,14 +79,6 @@
   (mcs-run-flower)
   (delete-other-windows)
   (split-window-vertically)
-  (switch-to-buffer "*mcs-server*")
-  (balance-windows)
-  (split-window-horizontally)
-  (windmove-right)
-  (switch-to-buffer "*mcs-starter*")
-  (balance-windows)
-  (split-window-horizontally)
-  (windmove-right)
   (switch-to-buffer "*mcs-schedule*")
   (balance-windows)
   (split-window-horizontally)
@@ -97,8 +94,6 @@
   (switch-to-buffer "*mcs-downloader*")
   (balance-windows)
   (windmove-down)
-  (split-window-horizontally)
-  (windmove-right)
   (switch-to-buffer "*mcs-parser*")
   (balance-windows)
   (split-window-horizontally)
@@ -112,19 +107,18 @@
   (split-window-horizontally)
   (windmove-right)
   (switch-to-buffer "*mcs-finisher*")
-  (balance-windows)
-  (switch-to-buffer "*mcs-crawler-flower*")
-  (balance-windows)
-  (split-window-horizontally)
-  (windmove-right)
-  (switch-to-buffer "*mcs-server-flower*")
   (balance-windows))
 
 (defun mcs-stop()
   (interactive)
-  (elscreen-find-and-goto-by-buffer "*mcs-server*")
+  (elscreen-find-and-goto-by-buffer "*mcs-controller*")
   (kill-matching-buffers-not-ask "*mcs-")
   (elscreen-kill))
+
+(defun mcs-update()
+  (interactive)
+  (mcs-stop)
+  (mcs-run))
 
 ;; (request
 ;;  "http://ya.ru/"
