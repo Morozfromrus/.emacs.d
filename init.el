@@ -87,6 +87,9 @@
 ;; Elscreen
 (require 'init-elscreen)
 
+;; Request
+(require 'init-request)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Languages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
