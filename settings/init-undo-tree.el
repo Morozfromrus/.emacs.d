@@ -1,7 +1,7 @@
 (use-package undo-tree
   :ensure t
   :bind (("C-x u" . undo-tree-visualize)
-	 ("C-/" . undo-tree-undo)
+	 ("C-/" . undo)
 	 ("M-/" . undo-tree-redo)))
 
 (provide 'init-undo-tree)
