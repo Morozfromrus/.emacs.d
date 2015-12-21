@@ -14,3 +14,5 @@
 **** sed -i -E -e '/<search>/s/<to_replace>/<replace_with>/g' <file_pattern>
 *** Выдрать matching group из текста
 **** sed -nr 's/<pattern>/\<gruop_num>/p'
+** Узнать кто слушает порт
+*** sudo netstat -tunap | grep <port> или sudo lsof -i -P -n | grep <port>
