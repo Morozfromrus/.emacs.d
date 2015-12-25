@@ -2,8 +2,8 @@
   :ensure t)
 
 (use-package python
-    :ensure t
-    :init
+  :ensure t
+  :init
   (progn
     (setq
      gud-pdb-command-name "ipdb"
