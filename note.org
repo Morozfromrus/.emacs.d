@@ -18,3 +18,5 @@
 **** sed -nr 's/<pattern>/\<gruop_num>/p'
 ** Узнать кто слушает порт
 *** sudo netstat -tunap | grep <port> или sudo lsof -i -P -n | grep <port>
+* Фильмы
+** ---

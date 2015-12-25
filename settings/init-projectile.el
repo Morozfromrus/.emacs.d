@@ -6,6 +6,7 @@
   :config
   (projectile-global-mode)
   (setq projectile-enable-caching t)
-  (setq projectile-cache-file (concat persistence-dir "projectile.cache")))
+  (setq projectile-cache-file (concat persistence-dir "projectile.cache"))
+  (setq projectile-require-project-root nil))
 
 (provide 'init-projectile)

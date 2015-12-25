@@ -38,6 +38,12 @@
 			    "cd ~/work/new_cs/crawler/;"
 			    "celery worker -A crawler.server_tasks -E -l INFO -n controller -Q controller --concurrency=12 -Ofair"))
 
+
+  (spawn-shell "*mcs-status-changer*"
+	       (concatenate 'string
+			    "cd ~/work/new_cs/server/;"
+			    "celery worker -A server_tasks -E -l INFO -n status_change -Q status_change --concurrency=1 -Ofair"))
+
   (spawn-shell "*mcs-downloader*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/crawler/;"
