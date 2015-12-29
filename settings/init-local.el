@@ -27,7 +27,12 @@
 	       (concatenate 'string
 			    "cd ~/work/new_cs/crawler/;"
 			    "celery worker -A crawler.crawler_tasks -E -l INFO -n virtual_bro -Q virtual_bro --concurrency=8 -Ofair"))
-  
+
+  (spawn-shell "*mcs-status-changer*"
+	       (concatenate 'string
+			    "cd ~/work/new_cs/server/;"
+			    "celery worker -A server_tasks -E -l INFO -n change_status -Q change_status --concurrency=1"))
+
   (spawn-shell "*mcs-saver*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/server/;"
