@@ -93,6 +93,9 @@
 ;; Request
 (require 'init-request)
 
+;; Sql-indent
+(require 'init-format-sql)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Languages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
