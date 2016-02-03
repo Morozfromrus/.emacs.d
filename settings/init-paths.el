@@ -24,6 +24,7 @@
       recentf-save-file (concat persistence-dir "recentf")
       auto-save-list-file-prefix (concat auto-save-list-dir ".saves-")
       auto-save-list-file-name (concat auto-save-list-dir ".saves-2752-mad~")
+      backup-directory-alist '(("" . "~/.emacs.d/.tmp/backup"))
       desktop-path (list desktop-dir))
 
 (load custom-file)
