@@ -9,8 +9,10 @@
     (ido-ubiquitous-mode)
     (flx-ido-mode)
     (setq ido-enable-flex-matching t
+	  confirm-nonexistent-file-or-buffer nil
+	  ido-confirm-unique-completion t
           ido-use-filename-at-point nil
-          ido-auto-merge-work-directories-length 0
+          ido-auto-merge-work-directories-length -1
           ido-use-virtual-buffers t
 	  ido-enable-prefix nil
 	  ido-case-fold nil
@@ -33,6 +35,11 @@
 
 ;; C-n/p is more intuitive in vertical layout
 (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
+
+(defun ido-clear-buffers ()
+  (interactive)
+  (setq ido-virtual-buffers '())
+  (setq recentf-list '()))
 
 (defun my/ido-go-straight-home ()
   (interactive)

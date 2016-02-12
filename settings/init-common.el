@@ -114,4 +114,7 @@ buffer is not visiting a file."
   (flet ((kill-buffer-ask (buffer) (kill-buffer buffer)))
     (kill-matching-buffers regexp)))
 
+;; remowe dublicates in kill ring
+(setq kill-do-not-save-duplicates t)
+
 (provide 'init-common)
