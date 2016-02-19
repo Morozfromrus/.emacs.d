@@ -49,7 +49,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Highlight leading spaces
-(require 'init-highlight-leading-spaces)
+;; (require 'init-highlight-leading-spaces)
 
 ;; Packages
 (require 'init-package)

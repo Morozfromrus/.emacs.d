@@ -13,7 +13,7 @@
 	  ido-confirm-unique-completion t
           ido-use-filename-at-point nil
           ido-auto-merge-work-directories-length -1
-          ido-use-virtual-buffers t
+          ido-use-virtual-buffers nil
 	  ido-enable-prefix nil
 	  ido-case-fold nil
 	  ido-create-new-buffer 'always

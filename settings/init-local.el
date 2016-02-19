@@ -11,12 +11,12 @@
   (spawn-shell "*mcs-starter*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/server/;"
-			    "python cs-starter.py"))
+			    "python manage.py starter"))
 
   (spawn-shell "*mcs-schedule*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/crawler/;"
-			    "celery worker -A crawler.crawler_tasks -E -l INFO -n schedule -Q schedule --concurrency=1"))
+			    "python -m crawler.scheduler"))
 
   (spawn-shell "*mcs-messenger*"
 	       (concatenate 'string
@@ -36,18 +36,17 @@
   (spawn-shell "*mcs-saver*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/server/;"
-			    "celery worker -A server_tasks -E -l INFO -n save -Q save --concurrency=1"))
+			    "celery worker -A server_tasks -E -l INFO -n save -Q save --concurrency=8"))
 
   (spawn-shell "*mcs-controller*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/crawler/;"
 			    "celery worker -A crawler.server_tasks -E -l INFO -n controller -Q controller --concurrency=12 -Ofair"))
 
-
-  (spawn-shell "*mcs-status-changer*"
+  (spawn-shell "*mcs-controller-extra*"
 	       (concatenate 'string
-			    "cd ~/work/new_cs/server/;"
-			    "celery worker -A server_tasks -E -l INFO -n status_change -Q status_change --concurrency=1 -Ofair"))
+			    "cd ~/work/new_cs/crawler/;"
+			    "celery worker -A crawler.server_tasks -E -l INFO -n controller_extra -Q controller_extra --concurrency=4 -Ofair"))  
 
   (spawn-shell "*mcs-downloader*"
 	       (concatenate 'string
@@ -62,8 +61,13 @@
   (spawn-shell "*mcs-processor*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/crawler/;"
-			    "celery worker -A crawler.crawler_tasks -E -l INFO -n process -Q process --concurrency=1"))
+			    "celery worker -A crawler.crawler_tasks -E -l INFO -n process -Q process --concurrency=8"))
 
+  (spawn-shell "*mcs-mad*"
+	       (concatenate 'string
+			    "cd ~/work/new_cs/server/;"
+			    "python manage.py mad"))
+  
   (spawn-shell "*mcs-finisher*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/crawler/;"
@@ -88,37 +92,71 @@
   (mcs-run-server)
   (mcs-run-crawler)
   (mcs-run-flower)
+  (mcs-window-render)
+  )
+
+(defun mcs-window-render()
+  (interactive)
   (delete-other-windows)
+
   (split-window-vertically)
+
   (switch-to-buffer "*mcs-schedule*")
   (balance-windows)
+  
   (split-window-horizontally)
   (windmove-right)
   (switch-to-buffer "*mcs-saver*")
   (balance-windows)
+  
   (split-window-horizontally)
   (windmove-right)
   (switch-to-buffer "*mcs-controller*")
   (balance-windows)
+  
   (split-window-horizontally)
   (windmove-right)
   (switch-to-buffer "*mcs-downloader*")
   (balance-windows)
+  
   (windmove-down)
+
+  (split-window-vertically)
+  
   (switch-to-buffer "*mcs-parser*")
   (balance-windows)
+  
   (split-window-horizontally)
   (windmove-right)
   (switch-to-buffer "*mcs-processor*")
   (balance-windows)
+  
   (split-window-horizontally)
   (windmove-right)
   (switch-to-buffer "*mcs-messenger*")
   (balance-windows)
+  
   (split-window-horizontally)
   (windmove-right)
   (switch-to-buffer "*mcs-finisher*")
-  (balance-windows))
+  (balance-windows)
+
+  (windmove-down)
+
+  (switch-to-buffer "*mcs-mad*")
+  (balance-windows)
+      
+  (split-window-horizontally)
+  (windmove-right)
+  (switch-to-buffer "*mcs-starter*")
+  (balance-windows)
+  
+  (split-window-horizontally)
+  (windmove-right)
+  (switch-to-buffer "*mcs-server*")
+  (balance-windows)
+
+  )
 
 (defun mcs-stop()
   (interactive)
@@ -126,10 +164,26 @@
   (kill-matching-buffers-not-ask "*mcs-")
   (elscreen-kill))
 
+(defun mcs-clear()
+  (interactive)
+  ;; (delete-other-windows)
+  ;; (split-window-horizontally)
+  ;; (windmove-right)
+  ;; (switch-to-buffer "*command-log*")
+  ;; (balance-windows)
+  (call-process-shell-command "redis-cli \"flushall\"" nil "*command-log*")
+  (call-process-shell-command "for vhost in `rabbitmqadmin --user=admin --password=9206 -f bash list vhosts`; do for queue in `rabbitmqadmin --user=admin --password=9206 --vhost=$vhost -f bash list queues`; do echo $queue `rabbitmqadmin --user=admin --password=9206 --vhost=$vhost delete queue name=$queue`; done; done" nil "*command-log*")
+  (call-process-shell-command "psql sources -c \"truncate sources_job cascade;\"" nil "*command-log*"))
+
 (defun mcs-update()
   (interactive)
   (mcs-stop)
+  (mcs-clear)
   (mcs-run))
+
+(defun stop-supervisor()
+  (interactive)
+  (call-process-shell-command "sudo service supervisor stop" nil "*command-log*"))
 
 ;; (request
 ;;  "http://ya.ru/"
