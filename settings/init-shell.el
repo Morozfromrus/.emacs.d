@@ -6,9 +6,15 @@
 (setq password-cache t)
 (setq password-cache-expiry 3600)
 
-(setq comint-buffer-maximum-size "200")
+(setq comint-buffer-maximum-size 200)
 (add-hook 'comint-output-filter-functions
           'comint-truncate-buffer)
+
+;; load esh-mode first
+(require 'esh-mode)
+
+(setq eshell-buffer-maximum-lines 200)
+(add-to-list 'eshell-output-filter-functions 'eshell-truncate-buffer)
 
 (defun eshell-init-aliases()
   (add-to-list 'eshell-command-aliases-list '("ff" "find-file"))
