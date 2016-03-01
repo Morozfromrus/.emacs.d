@@ -171,14 +171,23 @@
   ;; (windmove-right)
   ;; (switch-to-buffer "*command-log*")
   ;; (balance-windows)
-  (call-process-shell-command "redis-cli \"flushall\"" nil "*command-log*")
-  (call-process-shell-command "for vhost in `rabbitmqadmin --user=admin --password=9206 -f bash list vhosts`; do for queue in `rabbitmqadmin --user=admin --password=9206 --vhost=$vhost -f bash list queues`; do echo $queue `rabbitmqadmin --user=admin --password=9206 --vhost=$vhost delete queue name=$queue`; done; done" nil "*command-log*")
+  (mcs-soft-clear)
   (call-process-shell-command "psql sources -c \"truncate sources_job cascade;\"" nil "*command-log*"))
+
+(defun mcs-soft-clear()
+  (interactive)
+  (call-process-shell-command "redis-cli \"flushall\"" nil "*command-log*")
+  (call-process-shell-command "for vhost in `rabbitmqadmin --user=admin --password=9206 -f bash list vhosts`; do for queue in `rabbitmqadmin --user=admin --password=9206 --vhost=$vhost -f bash list queues`; do echo $queue `rabbitmqadmin --user=admin --password=9206 --vhost=$vhost delete queue name=$queue`; done; done" nil "*command-log*"))
 
 (defun mcs-update()
   (interactive)
   (mcs-stop)
   (mcs-clear)
+  (mcs-run))
+
+(defun mcs-restart()
+  (interactive)
+  (mcs-stop)
   (mcs-run))
 
 (defun stop-supervisor()
