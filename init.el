@@ -103,6 +103,9 @@
 ;; Python
 (require 'init-python-mode)
 
+;; Json
+(require 'init-json-mode)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Key bindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
