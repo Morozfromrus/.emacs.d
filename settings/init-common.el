@@ -38,6 +38,11 @@ Version 2015-04-09"
 
 ;; y and p
 (fset 'yes-or-no-p 'y-or-n-p)
+(defun y-or-n-p-with-return (orig-func &rest args)
+  (let ((query-replace-map (copy-keymap query-replace-map)))
+    (define-key query-replace-map (kbd "RET") 'act)
+    (apply orig-func args)))
+(advice-add 'y-or-n-p :around #'y-or-n-p-with-return)
 
 ;; spawn shell
 (defun spawn-shell (name &rest commands)
