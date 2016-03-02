@@ -2,8 +2,7 @@
 ** Использовать мастер пароль
 ** Сменить главную почту и перевести на нее основные сервисы
 ** Сделать плагин для хрома Universe
-** Начать пользоваться screen
-* Работа
+** TODO Начать пользоваться screen
 * Ubuntu
 ** Grep
 *** Вывести только попадающие под регулярку
@@ -17,15 +16,15 @@
 *** sudo netstat -tunap | grep <port> или sudo lsof -i -P -n | grep <port>
 ** Переименовать много файлов
 *** rename 's/что/на что/' files*
-* Фильмы
-** ---
+** Копировать в clipboard
+*** xclip -selection clipboard <
 * Хотелки по emacs
-** Хранить бекапы файлов, в отдельной директории
-** Улучшить мультикурсоры
-** Нормальный shell mod
-** Большие файлы
-** Python mod (ipython autocomplete)
-** Emacs on v <= 24
-** Изучить org mode
-** Начать пользоваться букмарками (bm)
-** Изучить lisp
+** TODO Хранить бекапы файлов, в отдельной директории
+** TODO Улучшить мультикурсоры
+** TODO Нормальный shell mod
+** TODO Большие файлы
+** TODO Python mod (ipython autocomplete)
+** TODO Emacs on v <= 24
+** TODO Изучить org mode
+** TODO Начать пользоваться букмарками (bm)
+** TODO Изучить lisp

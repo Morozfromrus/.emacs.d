@@ -3,7 +3,7 @@
   (spawn-shell "*mcs-server*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/server/;"
-			    "python manage.py runserver localhost:8888")))
+			    "python manage.py runserver 0.0.0.0:8888")))
 
 (defun mcs-run-crawler()
   (interactive)
