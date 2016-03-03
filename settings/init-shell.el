@@ -51,7 +51,7 @@
 ;;
 ;; `term/shell' is similar to `shell' based on `ansi-term' code.
 ;;
-(defun term/shell (program &optional new-buffer-name &optional)
+(defun term/shell (program &optional new-buffer-name)
   "Start a terminal-emulator in a new buffer.
 With a prefix argument, it prompts the user for the shell
 executable.
