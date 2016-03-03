@@ -44,22 +44,6 @@ Version 2015-04-09"
     (apply orig-func args)))
 (advice-add 'y-or-n-p :around #'y-or-n-p-with-return)
 
-;; spawn shell
-(defun spawn-shell (name &rest commands)
-  "Invoke shell with commands"
-  (interactive "MName of shell buffer to create: ")
-  (pop-to-buffer (get-buffer-create name))
-  (setq default-eshell-buffer-name (if (string= (boundp 'eshell-buffer-name) nil)
-                                       "*eshell*"
-                                     eshell-buffer-name))
-  (setq eshell-buffer-name name)
-  (eshell)
-  (setq eshell-buffer-name default-eshell-buffer-name)
-  (loop for command in commands
-        do (insert (concat command "\n")))
-  (eshell-send-input)
-  (goto-char (point-max)))
-
 ;; sudo edit
 (defun sudo-edit (&optional arg)
   "Edit currently visited file as root.
