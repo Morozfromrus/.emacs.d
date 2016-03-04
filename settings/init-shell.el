@@ -1,4 +1,4 @@
-(require 'em-tramp)
+;; (require 'em-tramp)
 
 ;; shell
 (setq comint-buffer-maximum-size 200)
@@ -15,12 +15,51 @@
 (setq eshell-buffer-maximum-lines 200)
 (add-to-list 'eshell-output-filter-functions 'eshell-truncate-buffer)
 
+(defun esudo (&rest args)
+  "Alias \"sudo\" to call Tramp.
+Uses the system sudo through TRAMP's sudo method."
+  (setq args (eshell-stringify-list (eshell-flatten-list args)))
+  (let ((orig-args (copy-tree args)))
+    (eshell-eval-using-options
+     "sudo" args
+     '((?h "help" nil nil "show this usage screen")
+       (?u "user" t user "execute a command as another USER")
+       :show-usage
+       :usage "[(-u | --user) USER] COMMAND
+Execute a COMMAND as the superuser or another USER.")
+     (throw 'eshell-external
+	    (let ((user (or user "root"))
+		  (host (or (file-remote-p default-directory 'host)
+			    "localhost"))
+		  (dir (or (file-remote-p default-directory 'localname)
+			   (expand-file-name default-directory)))
+		  (prefix (file-remote-p default-directory)))
+	      ;; `eshell-eval-using-options' reads options of COMMAND.
+	      (while (and (stringp (car orig-args))
+			  (member (car orig-args) '("-u" "--user")))
+		(setq orig-args (cddr orig-args)))
+	      (let ((default-directory
+		      (if (and prefix
+			       (or
+				(not
+				 (string-equal
+				  "sudo"
+				  (file-remote-p default-directory 'method)))
+				(not
+				 (string-equal
+				  user
+				  (file-remote-p default-directory 'user)))))
+			  (format "%s|sudo:%s@%s:%s"
+				  (substring prefix 0 -1) user host dir)
+			(format "/sudo:%s@%s:%s" user host dir))))
+		(eshell-named-command (car orig-args) (cdr orig-args))))))))
+
 (defun eshell-init-aliases()
   (add-to-list 'eshell-command-aliases-list '("ff" "find-file"))
   (add-to-list 'eshell-command-aliases-list '("d" "dired $1"))
   (add-to-list 'eshell-command-aliases-list '("l" "ls"))
   (add-to-list 'eshell-command-aliases-list '("ll" "ls -la"))
-  (add-to-list 'eshell-command-aliases-list '("sudo" "eshell/sudo $*")))
+  (add-to-list 'eshell-command-aliases-list '("sdo" "esudo $*")))
 
 (add-hook 'eshell-mode-hook 'eshell-init-aliases)
 
