@@ -1,15 +1,14 @@
 (require 'em-tramp)
 
 ;; shell
-
-(setq password-cache t)
-(setq password-cache-expiry 3600)
-
 (setq comint-buffer-maximum-size 200)
 (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
 
 ;; eshell
 (setq eshell-prefer-lisp-functions t)
+
+(setq password-cache t)
+(setq password-cache-expiry 3600)
 
 ;; load esh-mode first
 (require 'esh-mode)
