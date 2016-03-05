@@ -64,7 +64,7 @@
 (require 'init-undo-tree)
 
 ;; Hippie-expand
-(require 'init-hippie-expand)
+;; (require 'init-hippie-expand)
 
 ;; Auto-Complete
 (require 'init-auto-complete)

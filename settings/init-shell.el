@@ -1,7 +1,7 @@
 ;; (require 'em-tramp)
 
 ;; shell
-(setq comint-buffer-maximum-size 200)
+(setq comint-buffer-maximum-size 2000)
 (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
 
 ;; eshell
@@ -12,7 +12,7 @@
 
 ;; load esh-mode first
 (require 'esh-mode)
-(setq eshell-buffer-maximum-lines 200)
+(setq eshell-buffer-maximum-lines 2000)
 (add-to-list 'eshell-output-filter-functions 'eshell-truncate-buffer)
 
 (defun esudo (&rest args)
