@@ -10,7 +10,9 @@
 (show-paren-mode 1)
 
 ;; Theme
-(load-theme 'monokai)
+(use-package danneskjold-theme
+  :ensure t)
+;; (load-theme 'monokai)
 
 ;; (use-package color-theme
 ;;   :ensure t

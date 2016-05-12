@@ -3,7 +3,7 @@
   (spawn-shell "*mcs-server*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/server/;"
-			    "python manage.py runserver 0.0.0.0:8888")))
+			    "python manage.py runserver 0.0.0.0:8080")))
 
 (defun mcs-run-crawler()
   (interactive)
@@ -21,47 +21,57 @@
   (spawn-shell "*mcs-messenger*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/crawler/;"
-			    "celery worker -A crawler.crawler_tasks -E -l INFO -n messenger -Q messenger --concurrency=1"))
+			    "celery worker -A crawler.crawler_tasks -E -l INFO -n messenger -Q messenger --concurrency=1 -Ofair"))
 
   (spawn-shell "*mcs-virtual_bro*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/crawler/;"
-			    "celery worker -A crawler.crawler_tasks -E -l INFO -n virtual_bro -Q virtual_bro --concurrency=8 -Ofair"))
+			    "celery worker -A crawler.crawler_tasks -E -l INFO -n virtual_bro -Q virtual_bro --concurrency=1 -Ofair"))
 
   (spawn-shell "*mcs-status-changer*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/server/;"
-			    "celery worker -A server_tasks -E -l INFO -n change_status -Q change_status --concurrency=1"))
+			    "celery worker -A server_tasks -E -l INFO -n change_status -Q change_status --concurrency=1 -Ofair"))
 
   (spawn-shell "*mcs-saver*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/server/;"
-			    "celery worker -A server_tasks -E -l INFO -n save -Q save --concurrency=8"))
+			    "celery worker -A server_tasks -E -l INFO -n save -Q save --concurrency=1 -Ofair"))
 
   (spawn-shell "*mcs-controller*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/crawler/;"
-			    "celery worker -A crawler.server_tasks -E -l INFO -n controller -Q controller --concurrency=12 -Ofair"))
+			    "celery worker -A crawler.server_tasks -E -l INFO -n controller -Q controller --concurrency=1 -Ofair"))
 
+  (spawn-shell "*mcs-controller-plugin*"
+	       (concatenate 'string
+			    "cd ~/work/new_cs/crawler/;"
+			    "celery worker -A crawler.server_tasks -E -l INFO -n controller_plugin -Q controller_plugin --concurrency=1 -Ofair"))
+
+  (spawn-shell "*mcs-controller-comments*"
+	       (concatenate 'string
+			    "cd ~/work/new_cs/crawler/;"
+			    "celery worker -A crawler.server_tasks -E -l INFO -n controller_comments -Q controller_comments --concurrency=1 -Ofair"))
+  
   (spawn-shell "*mcs-controller-extra*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/crawler/;"
-			    "celery worker -A crawler.server_tasks -E -l INFO -n controller_extra -Q controller_extra --concurrency=4 -Ofair"))  
+			    "celery worker -A crawler.server_tasks -E -l INFO -n controller_extra -Q controller_extra --concurrency=1 -Ofair"))  
 
   (spawn-shell "*mcs-downloader*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/crawler/;"
-			    "celery worker -A crawler.crawler_tasks -E -l INFO -n download -Q download --concurrency=32 -Ofair"))
+			    "celery worker -A crawler.crawler_tasks -E -l INFO -n download -Q download --concurrency=1 -Ofair"))
 
   (spawn-shell "*mcs-parser*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/crawler/;"
-			    "celery worker -A crawler.crawler_tasks -E -l INFO -n parse -Q parse --concurrency=8 -Ofair"))
+			    "celery worker -A crawler.crawler_tasks -E -l INFO -n parse -Q parse --concurrency=1 -Ofair"))
 
   (spawn-shell "*mcs-processor*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/crawler/;"
-			    "celery worker -A crawler.crawler_tasks -E -l INFO -n process -Q process --concurrency=8"))
+			    "celery worker -A crawler.crawler_tasks -E -l INFO -n process -Q process --concurrency=1 -Ofair"))
 
   (spawn-shell "*mcs-mad*"
 	       (concatenate 'string
@@ -71,7 +81,7 @@
   (spawn-shell "*mcs-finisher*"
 	       (concatenate 'string
 			    "cd ~/work/new_cs/crawler/;"
-			    "celery worker -A crawler.crawler_tasks -E -l INFO -n finish -Q finish --concurrency=1")))
+			    "celery worker -A crawler.crawler_tasks -E -l INFO -n finish -Q finish --concurrency=1 -Ofair")))
 
 (defun mcs-run-flower()
   (interactive)
@@ -155,7 +165,12 @@
   (windmove-right)
   (switch-to-buffer "*mcs-server*")
   (balance-windows)
-
+  
+  (split-window-horizontally)
+  (windmove-right)
+  (switch-to-buffer "*mcs-virtual_bro*")
+  (balance-windows)
+  
   )
 
 (defun mcs-stop()
@@ -176,13 +191,14 @@
 
 (defun mcs-soft-clear()
   (interactive)
+  (call-process-shell-command "rm -rf /home/mad/work/new_cs/crawler/log/*" nil "*command-log*")
   (call-process-shell-command "redis-cli \"flushall\"" nil "*command-log*")
   (call-process-shell-command "for vhost in `rabbitmqadmin --user=admin --password=9206 -f bash list vhosts`; do for queue in `rabbitmqadmin --user=admin --password=9206 --vhost=$vhost -f bash list queues`; do echo $queue `rabbitmqadmin --user=admin --password=9206 --vhost=$vhost delete queue name=$queue`; done; done" nil "*command-log*"))
 
 (defun mcs-update()
   (interactive)
   (mcs-stop)
-  (mcs-clear)
+  (mcs-soft-clear)
   (mcs-run))
 
 (defun mcs-restart()

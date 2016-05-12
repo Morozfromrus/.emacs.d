@@ -16,11 +16,11 @@
  python-shell-completion-string-code
  "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 
-(use-package jedi
-  :ensure t)
-(setq jedi:setup-keys t)
-(autoload 'jedi:setup "jedi" nil t)
-(add-hook 'python-mode-hook 'jedi:setup)
+;; (use-package jedi
+;;   :ensure t)
+;; (setq jedi:setup-keys t)
+;; (autoload 'jedi:setup "jedi" nil t)
+;; (add-hook 'python-mode-hook 'jedi:setup)
 
 ;; ------------------
 ;; misc python config
