@@ -63,11 +63,17 @@
 ;; Undo tree
 (require 'init-undo-tree)
 
+;; Smart tab
+(require 'init-smart-tab)
+
 ;; Hippie-expand
-;; (require 'init-hippie-expand)
+(require 'init-hippie-expand)
+
+;; Yasnippet
+(require 'init-yasnippet)
 
 ;; Auto-Complete
-(require 'init-auto-complete)
+;; (require 'init-auto-complete)
 
 ;; Magit
 (require 'init-magit)
@@ -101,7 +107,8 @@
 (require 'init-php-mode)
 
 ;; Python
-(require 'init-python-mode)
+;; (require 'init-python-mode)
+;; (require 'init-python-mode-rope)
 
 ;; Json
 (require 'init-json-mode)
