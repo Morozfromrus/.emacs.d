@@ -5,13 +5,13 @@
 (add-hook 'python-mode-hook 'py-complete-init)
 
 (setq hippie-expand-try-functions-list
-      '(yas/hippie-try-expand
+      '(yas-hippie-try-expand
 	py-complete-try-complete-symbol
         try-complete-file-name-partially
+        try-expand-dabbrev-from-kill
+        try-expand-dabbrev-all-buffers
         try-expand-all-abbrevs
         try-expand-dabbrev
-        try-expand-dabbrev-all-buffers
-        try-expand-dabbrev-from-kill
         try-complete-lisp-symbol-partially
         try-complete-lisp-symbol))
 

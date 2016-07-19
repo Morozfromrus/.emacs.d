@@ -28,6 +28,7 @@
 
 ;; delete
 (define-key key-translation-map (kbd "C-h") (kbd "DEL"))
+(define-key key-translation-map (kbd "C-S-h") (kbd "<C-S-backspace>"))
 (define-key key-translation-map (kbd "M-h") (kbd "<C-backspace>"))
 
 (provide 'init-keys)

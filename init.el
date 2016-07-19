@@ -1,3 +1,34 @@
+;; TODO
+;; move to end of region
+
+(require 'package)
+
+(setq dist-packages-dir (concat user-emacs-directory "dist-packages/")
+      package-user-dir (concat dist-packages-dir "elpa/"))
+
+(make-directory dist-packages-dir t)
+(make-directory package-user-dir t)
+
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
+
+(package-initialize)
+
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+(if (not (package-installed-p 'use-package))
+    (progn
+      (package-refresh-contents)
+      (package-install 'use-package)))
+
+(eval-when-compile
+  (require 'use-package))
+
+(use-package use-package
+  :init (progn
+	  (setq use-package-verbose t)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configuration for emacs
 
