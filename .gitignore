@@ -6,3 +6,4 @@ elpa/
 persistence/
 /eshell/history
 /eshell/lastdir
+/settings/init-local.el

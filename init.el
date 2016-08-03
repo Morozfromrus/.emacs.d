@@ -1,5 +1,7 @@
-;; TODO
-;; move to end of region
+;;; init.el --- emacs configuration by Mad
+;;; Commentary:
+;;; supported by rails-to-cosmos
+;;; Code:
 
 (require 'package)
 
@@ -36,6 +38,13 @@
                   flycheck-idle-change-delay 0.8
                   flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list))
   :ensure t)
+
+(use-package my/http
+  :init (progn
+
+          ;; https://github.com/emacs-pe/http.el
+          (use-package http
+            :ensure t)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configuration for emacs
@@ -78,10 +87,11 @@
 
 ;; Start with *scratch* buffer
 (setq inhibit-startup-screen t)
+(setq initial-scratch-message "")
 
 ;; Load saved desktop
-(require 'desktop)
-(desktop-save-mode 1)
+;; (require 'desktop)
+;; (desktop-save-mode 1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Utilites
@@ -164,5 +174,5 @@
 
 (require 'init-local nil t)
 
-;; THE END
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(provide 'init)
+;;; init.el ends here

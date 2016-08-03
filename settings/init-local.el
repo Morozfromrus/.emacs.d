@@ -13,6 +13,16 @@
 			    "cd ~/work/new_repos/server/;"
 			    "python manage.py starter"))
 
+  (spawn-shell "*mcs-chpok*"
+	       (concatenate 'string
+			    "cd ~/work/new_repos/server/;"
+			    "python manage.py chpok"))
+
+  (spawn-shell "*mcs-subscriber*"
+	       (concatenate 'string
+			    "cd ~/work/new_repos/server/;"
+			    "python manage.py ekun_subscriber"))
+
   (spawn-shell "*mcs-schedule*"
 	       (concatenate 'string
 			    "cd ~/work/new_repos/crawler/;"
