@@ -1,12 +1,12 @@
 ;; (global-set-key (kbd "M-q") 'hippie-expand)
 
-(require 'py-complete)
-(autoload 'py-complete-init "py-complete")
-(add-hook 'python-mode-hook 'py-complete-init)
+;; (require 'py-complete)
+;; (autoload 'py-complete-init "py-complete")
+;; (add-hook 'python-mode-hook 'py-complete-init)
 
 (setq hippie-expand-try-functions-list
       '(yas-hippie-try-expand
-	py-complete-try-complete-symbol
+	;; py-complete-try-complete-symbol
         try-complete-file-name-partially
         try-expand-dabbrev-from-kill
         try-expand-dabbrev-all-buffers
